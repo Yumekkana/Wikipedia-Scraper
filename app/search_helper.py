@@ -1,0 +1,36 @@
+import requests
+import re
+from bs4 import BeautifulSoup
+from urllib.parse import quote
+from fastapi import APIRouter
+
+router = APIRouter()
+
+def search_helper(search_term, limit=20):
+
+    allowed_limits = [20, 50, 100, 250, 500]
+    search_term = quote(search_term)
+    
+    url = f"https://en.wikipedia.org/w/index.php?limit={limit}&fulltext=1&search={search_term}&title=Special%3ASearch&profile=default"
+
+    headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36'
+    }
+
+    response = requests.request("GET", url, headers=headers)
+
+    html = response.text
+
+    titles = BeautifulSoup(html, "html.parser").find_all("div", {"class": "mw-search-result-heading"})
+
+    links = []
+
+    for tag in titles:
+        htmls = str(tag)
+        matches = re.findall(r'href="(/wiki/[^"]+)"', htmls)
+        links.extend(matches)
+
+    return links
+
+result = search_helper('Cat', 20)
+print(result)
