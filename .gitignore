@@ -1,0 +1,135 @@
+# ==========================================
+# Python & Virtual Environments
+# ==========================================
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ==========================================
+# Machine Learning & Data Science
+# ==========================================
+# Model files (Keep these out if they are large or sensitive, 
+# though you might want to track small ones. Usually, track code, not models.)
+*.pkl
+*.joblib
+*.h5
+*.pth
+*.pt
+*.onnx
+*.pb
+
+
+# ==========================================
+# IDE & Editors
+# ==========================================
+# VS Code
+.vscode/
+*.swp
+*.swo
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Emacs
+*~
+\#*
+
+# ==========================================
+# OS Specific
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+trash-*
+
+# ==========================================
+# Logs & Local Config
+# ==========================================
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Local env files
+.env
+.env.local
+.env.production
+
+# Secrets & Credentials
+*.key
+*.pem
+secrets/
+credentials/
+
+# ==========================================
+# Documentation & Static
+# ==========================================
+# Generated docs
+docs/_build/
+_site/
+
+# ==========================================
+# Misc
+# ==========================================
+# Coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
