@@ -1,19 +1,19 @@
 from fastapi import APIRouter
-import requests
+import httpx
 import re
 from bs4 import BeautifulSoup
 
 router = APIRouter()
 
-def get_infobox(search_term):
+async def get_infobox(search_term):
 
     url = f"https://en.wikipedia.org/wiki/{search_term}"
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36u "
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36',
     }
-
-    response = requests.get(url, headers=headers)
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, headers=headers)
 
     html = response.text
 
@@ -43,6 +43,6 @@ def get_infobox(search_term):
     return clean_data
 
 @router.get("/infobox")
-def infobox(search_term):
-    result = get_infobox(search_term)
+async def infobox(search_term):
+    result = await get_infobox(search_term)
     return result
