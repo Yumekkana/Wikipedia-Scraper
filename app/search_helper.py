@@ -27,7 +27,8 @@ def search_helper(search_term, limit=20):
 
     for tag in titles:
         htmls = str(tag)
-        matches = re.findall(r'href="(/wiki/[^"]+)"', htmls)
+        matches = re.findall(r'href="/wiki/([^"]+)"', htmls)
+        matches = [re.sub(r'%[0-9A-Fa-f]{2}', "", match) for match in matches]
         links.extend(matches)
 
     return links
