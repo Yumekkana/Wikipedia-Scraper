@@ -8,7 +8,6 @@ router = APIRouter()
 
 def search_helper(search_term, limit=20):
 
-    allowed_limits = [20, 50, 100, 250, 500]
     search_term = quote(search_term)
     
     url = f"https://en.wikipedia.org/w/index.php?limit={limit}&fulltext=1&search={search_term}&title=Special%3ASearch&profile=default"
@@ -33,5 +32,11 @@ def search_helper(search_term, limit=20):
 
     return links
 
-result = search_helper('Cat', 20)
-print(result)
+@router.get("/search_helper")
+def searchhelper(search_term: str, limit: int = 20):
+    allowed_limits = [20, 50, 100, 250, 500]
+    if limit not in allowed_limits:
+        return {"error": "Invalid limit. Allowed values are 20, 50, 100, 250, 500."}
+    
+    results = search_helper(search_term, limit)
+    return {"results": results}
